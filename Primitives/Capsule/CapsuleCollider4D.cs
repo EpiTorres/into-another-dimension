@@ -87,7 +87,7 @@ public class CapsuleCollider4D : MonoBehaviour
      *------------------------------------------------------------------*/
     private void CalculateEndPoints()
     {
-        Vector4 rotatedHeight = rotor.Rotate(new Vector4(0, height / 2.0F + radius, 0, 0));
+        Vector4 rotatedHeight = rotor.Rotate(new Vector4(0, height / 2.0F, 0, 0));
         endPointA = center + rotatedHeight;
         endPointB = center - rotatedHeight;
     }

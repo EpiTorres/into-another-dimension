@@ -203,22 +203,23 @@ public class CollisionArbiter
             // Handles the angular components for the mass calculations
             if (!b1.fixedAngular)
             {
-                Bivector4D nrWedgeN = new Bivector4D(contact.r1, normal).ComponentMultiply(b1.invInertia);
-                Vector4 nLeftContraction = nrWedgeN.LeftContraction(contact.r1);
+                Bivector4D nrInert = b1.invInertia * new Bivector4D(contact.r1, normal);
+                Vector4 nLeftContraction = nrInert.LeftContraction(contact.r1);
                 massNormal += Vector4.Dot(nLeftContraction, normal);
 
-                Bivector4D trWedgeN = new Bivector4D(contact.r1, contact.tangent).ComponentMultiply(b1.invInertia);
-                Vector4 tLeftContraction = trWedgeN.LeftContraction(contact.r1);
+
+                Bivector4D trInert = b1.invInertia * new Bivector4D(contact.r1, contact.tangent);
+                Vector4 tLeftContraction = trInert.LeftContraction(contact.r1);
                 massTangent += Vector4.Dot(tLeftContraction, contact.tangent);
             }
             if (!b2.fixedAngular)
             {
-                Bivector4D nrWedgeN = new Bivector4D(contact.r2, normal).ComponentMultiply(b2.invInertia);
-                Vector4 nLeftContraction = nrWedgeN.LeftContraction(contact.r2);
+                Bivector4D nrInert = b2.invInertia * new Bivector4D(contact.r2, normal);
+                Vector4 nLeftContraction = nrInert.LeftContraction(contact.r2);
                 massNormal += Vector4.Dot(nLeftContraction, normal);
 
-                Bivector4D trWedgeN = new Bivector4D(contact.r2, contact.tangent).ComponentMultiply(b2.invInertia);
-                Vector4 tLeftContraction = trWedgeN.LeftContraction(contact.r2);
+                Bivector4D trInert = b2.invInertia * new Bivector4D(contact.r2, contact.tangent);
+                Vector4 tLeftContraction = trInert.LeftContraction(contact.r2);
                 massTangent += Vector4.Dot(tLeftContraction, contact.tangent);
             }
 
@@ -292,9 +293,9 @@ public class CollisionArbiter
     private void ApplyImpulse(Vector4 impulse, Vector4 r1, Vector4 r2)
     {
         b1.AddVelocity((1F / b1.mass) * impulse);
-        b1.AddAngularVelocity(new Bivector4D(r1, impulse).ComponentMultiply(b1.invInertia));
+        b1.AddAngularVelocity(b1.invInertia * new Bivector4D(r1, impulse));
         b2.AddVelocity(-(1F / b2.mass) * impulse);
-        b2.AddAngularVelocity(-new Bivector4D(r2, impulse).ComponentMultiply(b2.invInertia));
+        b2.AddAngularVelocity(-(b2.invInertia * new Bivector4D(r2, impulse)));
     }
     ////////////////////////////////////////////////////////////////////
 }

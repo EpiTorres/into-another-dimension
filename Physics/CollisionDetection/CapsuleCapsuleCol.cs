@@ -35,10 +35,10 @@ public class CapsuleCapsuleCol
     public static ContactPoint4D[] CheckCollision(CapsuleCollider4D c1, CapsuleCollider4D c2)
     {
         // Calculates the squared distances of the between the capsule's endpoints
-        float d0 = (c2.endPointA - c1.endPointA).sqrMagnitude;
-        float d1 = (c2.endPointB - c1.endPointA).sqrMagnitude;
-        float d2 = (c2.endPointA - c1.endPointB).sqrMagnitude;
-        float d3 = (c2.endPointB - c1.endPointB).sqrMagnitude;
+        float d0 = (c2.endPointA - c1.endPointA).magnitude;
+        float d1 = (c2.endPointB - c1.endPointA).magnitude;
+        float d2 = (c2.endPointA - c1.endPointB).magnitude;
+        float d3 = (c2.endPointB - c1.endPointB).magnitude;
 
         // Selects the closest endpoint from capsule 1 to capsule 2
         Vector4 c1Center = (d2 < d0 || d2 < d1 || d3 < d0 || d3 < d1)

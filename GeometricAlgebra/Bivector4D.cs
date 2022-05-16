@@ -207,22 +207,6 @@ public class Bivector4D
     }
 
     /*------------------------------------------------------------------
-     * Returns the inverse of this bivector. Please note that all zero
-     * components will remain zero (to prevent division by 0)
-     *------------------------------------------------------------------*/
-    public Bivector4D Inverse()
-    {
-        float XY = Mathf.Approximately(this.XY, 0) ? 0 : (1 / this.XY);
-        float XZ = Mathf.Approximately(this.XZ, 0) ? 0 : (1 / this.XZ);
-        float XW = Mathf.Approximately(this.XW, 0) ? 0 : (1 / this.XW);
-        float YZ = Mathf.Approximately(this.YZ, 0) ? 0 : (1 / this.YZ);
-        float YW = Mathf.Approximately(this.YW, 0) ? 0 : (1 / this.YW);
-        float ZW = Mathf.Approximately(this.ZW, 0) ? 0 : (1 / this.ZW);
-
-        return new Bivector4D(XY, XZ, XW, YZ, YW, ZW);
-    }
-
-    /*------------------------------------------------------------------
      * Returns the result of the component-wise multiplication of the
      * given bivectors
      *------------------------------------------------------------------*/
