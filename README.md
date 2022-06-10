@@ -1,6 +1,6 @@
 # Into Another Dimension: Developing a Simulation of 4D Space by Implementing 4D Rigid Body Dynamics and Ray Marching
 
-<img src="./files/gifs/IAD.gif" width="60%" height="60%">
+![4D Collision](/files/gifs/IAD.gif)
 
 In recent years, scholars and programmers have developed programs that simulate 4D
 spaces and allow users to interact with them. Not only do these types of
